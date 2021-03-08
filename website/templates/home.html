@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+
+<h1>Add note</h1>
+<form method="post">
+    <textarea name="note" id="note" class="form-group" cols="50" rows="5"></textarea>
+    <div allign='center'>
+        <button type="submit" class="btn btn-primary" )">Add Note</button>
+    </div>
+
+</form>
+
+<h1>Notes</h1>
+<ul class='list-group list-group-flush' id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item d-flex justify-content-between"><p class=" flex-fill">{{note.data}}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" onclick="deleteNote({{ note.id }})"></button>
+
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+This is home page 
+
+{% endif %}
+{% endblock content %}
+

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <nav
+          class="navbar-nav collapse navbar-collapse  row"
+          id="navbarNavAltMarkup"
+        >
+          <a class="nav-link active col-sm" aria-current="page" href="/">Home</a>
+          <a class="nav-link col-sm" href="#">Features</a>
+          <a class="nav-link col-sm" href="#">Pricing</a>
+          <a class="nav-link col-sm" href="#">Disabled</a>
+          <span class="col-2"></span>
+          {% if user.is_authenticated %}
+          
+          <a
+            class="nav-link btn btn-outline-success col-sm"
+            href="/logout"
+            id="logout"
+            >Logout</a
+          >
+          {% else %}
+          <div class="col-4 btn-group ">
+          <a
+            class="nav-link btn btn-outline-success"
+            href="/login"
+            id="login"
+            >Login</a
+          >
+          <a
+            class="nav-link btn btn-outline-success"
+            href="/sign-up"
+            id="sign-up"
+            >Sign-up</a
+          >
+        </div>
+          {% endif %}
+        </nav>
+      </div>
+    </nav>
+    <!-- Navbar -->
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category,message in messages %}
+        {% if category== 'error' %}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% else %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <!-- Flash messages --> 
+    <!-- content -->
+    <div class="container">
+      {% block content %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet justo donec enim diam vulputate ut. Posuere ac ut consequat semper viverra nam. Nec ultrices dui sapien eget mi. Id ornare arcu odio ut sem nulla. Eget arcu dictum varius duis at consectetur. Neque aliquam vestibulum morbi blandit cursus. Semper auctor neque vitae tempus quam pellentesque nec. Turpis in eu mi bibendum neque egestas congue quisque. Quis risus sed vulputate odio ut enim. Aliquet enim tortor at auctor urna. Scelerisque fermentum dui faucibus in ornare quam. Eu sem integer vitae justo eget magna fermentum. Aliquet porttitor lacus luctus accumsan tortor posuere. Nec dui nunc mattis enim. Justo laoreet sit amet cursus sit. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum a. Erat nam at lectus urna duis convallis.
+
+          Ut tristique et egestas quis ipsum. Aliquet risus feugiat in ante metus. Ut aliquam purus sit amet. Tincidunt lobortis feugiat vivamus at augue eget arcu. Pretium viverra suspendisse potenti nullam ac tortor vitae. Tempor commodo ullamcorper a lacus vestibulum. Varius quam quisque id diam vel quam elementum. Ac orci phasellus egestas tellus rutrum tellus. At augue eget arcu dictum varius duis at consectetur. Et ultrices neque ornare aenean euismod elementum. Condimentum mattis pellentesque id nibh tortor. Sodales ut eu sem integer. Ante metus dictum at tempor commodo ullamcorper a lacus. Odio tempor orci dapibus ultrices in iaculis nunc sed augue. Amet consectetur adipiscing elit pellentesque. Laoreet id donec ultrices tincidunt arcu. Diam quis enim lobortis scelerisque. Massa placerat duis ultricies lacus sed turpis tincidunt.
+          
+          Sit amet venenatis urna cursus eget nunc scelerisque viverra. Magna sit amet purus gravida quis blandit. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Volutpat blandit aliquam etiam erat velit scelerisque. Feugiat scelerisque varius morbi enim nunc faucibus. Aenean sed adipiscing diam donec adipiscing. Consequat id porta nibh venenatis cras sed felis eget velit. Pulvinar etiam non quam lacus suspendisse faucibus. Volutpat est velit egestas dui id ornare.
+          
+          Tristique magna sit amet purus gravida quis blandit turpis. Luctus venenatis lectus magna fringilla urna. Quis imperdiet massa tincidunt nunc pulvinar sapien et ligula. Sit amet nisl purus in mollis. Quam vulputate dignissim suspendisse in est ante in nibh mauris. Quam pellentesque nec nam aliquam sem et tortor. Vel orci porta non pulvinar neque. Sit amet mattis vulputate enim nulla. Ultrices in iaculis nunc sed. Dictum sit amet justo donec enim diam. Nisl tincidunt eget nullam non nisi est sit amet facilisis. Non nisi est sit amet facilisis magna etiam tempor.
+          
+          Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor. Aliquet enim tortor at auctor urna nunc id cursus. Faucibus scelerisque eleifend donec pretium. Potenti nullam ac tortor vitae purus. At quis risus sed vulputate. Aenean euismod elementum nisi quis eleifend quam adipiscing vitae. Consequat ac felis donec et odio pellentesque diam volutpat. Aliquam id diam maecenas ultricies mi eget. Lacus luctus accumsan tortor posuere ac ut consequat. Et ultrices neque ornare aenean euismod. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Posuere morbi leo urna molestie at elementum eu facilisis sed. Sit amet tellus cras adipiscing enim eu turpis. Consequat ac felis donec et odio pellentesque. Amet porttitor eget dolor morbi non arcu risus quis. In aliquam sem fringilla ut morbi tincidunt augue interdum.</p>
+      {% endblock content %}
+    </div>
+    <!-- content -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript"
+    src="{{ url_for('static', filename='deleteNote.js') }}"
+    >
+
+    </script>
+  </body>
+</html>
